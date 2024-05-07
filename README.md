@@ -13,7 +13,7 @@ To tackle the challenges posed by partial annotations, this work introduces a cu
 
 ### [2.1] Architecture and Key Components
 
-## [2.2] Visual Explanation of the Trigger Localization
+**Visual Explanation of the Trigger Localization** <br />
 
 Our model's architecture is centered around a novel trigger localization formulation that utilizes contrastive learning. This setup enhances the model’s ability to focus on relevant event triggers without being misled by noise from partial annotations. By emphasizing the relative differences between potential triggers and non-triggers, our approach significantly improves the clarity and accuracy of event detection.
 
