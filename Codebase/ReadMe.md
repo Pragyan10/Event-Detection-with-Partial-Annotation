@@ -1,4 +1,5 @@
 # The readme detail is extracted from the original paper github repository - the authors of the paper have full copyright and ownership of the code base and the details in the readme
+## Link to the repository -> https://github.com/jianliu-ml/partialED
 
 
 Code for Event Detection with Partial Annotation
