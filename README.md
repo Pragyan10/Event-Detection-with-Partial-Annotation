@@ -3,8 +3,12 @@
 ## Introduction
 Event Detection (ED) is a critical task within the broader field of natural language processing, aimed at identifying and categorizing occurrences of specific events in textual data. Traditionally, ED relies heavily on fully labeled datasets for model training. However, these ideal conditions are rarely met in practical scenarios, leading to datasets with partial or incomplete annotations. This issue significantly hampers the training of effective models using standard supervised learning techniques, as they struggle to cope with the incomplete data, leading to poor generalization on real-world data.
 
+![ImageForPartialAnnotation](/Images/PartialAnnotation.png)
+
 ## Proposed Approach
 To tackle the challenges posed by partial annotations, our research introduces a cutting-edge method that leverages contrastive learning techniques. This approach is specifically designed to differentiate between actual event triggers and the contextual words surrounding them, thus enhancing the model's ability to recognize and categorize events accurately, even with incomplete data.
+
+![ImageForApproachOverview](/Images/ApproachOverview.png)
 
 ## Architecture and Technical Details
 Our model's architecture is centered around a novel trigger localization formulation that utilizes contrastive learning. This setup enhances the model’s ability to focus on relevant event triggers without being misled by noise from partial annotations. By emphasizing the relative differences between potential triggers and non-triggers, our approach significantly improves the clarity and accuracy of event detection.
