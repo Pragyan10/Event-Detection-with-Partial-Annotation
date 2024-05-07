@@ -7,16 +7,19 @@ For example in the figure below we see that <u> **"devastated"** </u> is conside
 ![ImageForPartialAnnotation](/Images/PartialAnnotation.png)
 
 ## [2] Proposed Approach
-To tackle the challenges posed by partial annotations, our research introduces a cutting-edge method that leverages contrastive learning techniques. This approach is specifically designed to differentiate between actual event triggers and the contextual words surrounding them, thus enhancing the model's ability to recognize and categorize events accurately, even with incomplete data.
+To tackle the challenges posed by partial annotations, this work introduces a cutting-edge method that leverages **contrastive learning techniques**. This approach is specifically designed to differentiate between actual event triggers and the contextual words surrounding them, thus enhancing the model's ability to recognize and categorize events accurately, even with incomplete data.
 
 ![ImageForApproachOverview](/Images/ApproachOverview.png)
 
-### [2.1] Architecture and Technical Details
+### [2.1] Architecture and Key Components
+
+## [2.2] Visual Explanation of the Trigger Localization
+
 Our model's architecture is centered around a novel trigger localization formulation that utilizes contrastive learning. This setup enhances the model’s ability to focus on relevant event triggers without being misled by noise from partial annotations. By emphasizing the relative differences between potential triggers and non-triggers, our approach significantly improves the clarity and accuracy of event detection.
 
-## [2.2] Visual Explanation of the Methodology
+![ImageForApproachOverview](/Images/TriggerLocalization.png)
 
-Figure 1: Detailed comparison between traditional hard classification and our advanced trigger localization methodology.
+Detailed comparison between traditional hard classification and our advanced trigger localization methodology.
 
 This visualization offers an in-depth look at how our model processes text to isolate and identify event triggers more effectively than traditional methods.
 
