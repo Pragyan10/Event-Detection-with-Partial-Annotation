@@ -27,17 +27,9 @@ This visualization demonstrates how our model processes text to isolate and iden
 Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the model's predictive uncertainty. By reinforcing high-confidence predictions and cautiously adjusting parameters for low-confidence ones, the model learns from its most reliable outputs and remains adaptable. This approach not only helps mitigate the impact of noisy or incomplete data but also enhances the model's generalization capabilities across diverse datasets.
 
 ## Key Results and Performance
-Our new method stands out for its robust performance, particularly in scenarios where a large portion of the dataset suffers from incomplete annotations:
 
-### Exceptional Robustness: Even in test cases where up to 90% of the events are not labeled, our model achieves an F1 score exceeding 60%.
-### Benchmark Enhancements: We have not only utilized but also enhanced the ACE 2005 datasets, ensuring they provide a more accurate benchmark for evaluating event detection models under realistic conditions.
+[Need to fill this part] 
 
-
-## Comprehensive Results Visualization
-
-Figure 2: Graphical representation of our model's performance across varying levels of annotation completeness.
-
-This graph highlights our model's superior performance and consistency across a range of incomplete data scenarios, validating its effectiveness in realistic settings.
 
 ## Practical Examples and Real-World Applications
 
@@ -84,4 +76,4 @@ Analysis: The model correctly fills in the missing "New" label, showing its capa
 These examples illustrate the model's practical ability to correct and complete partial annotations, enhancing the reliability and accuracy of event detection in various texts compared to the existing hard classification.
 
 ## Conclusion
-Our innovative approach to event detection using partial annotations marks a significant advancement in the field of natural language processing. By effectively addressing the challenges associated with incomplete data, our method not only improves the accuracy and robustness of event detection models but also paves the way for future research and applications that can benefit from these methodological improvements in handling partial annotations.
+This innovative approach to event detection using partial annotations marks a significant advancement for not just event detection but also task including event argument detection and entity relation extraction. By effectively addressing the challenges associated with incomplete data, this method not only improves the accuracy and robustness of event detection models but also paves the way for future research and applications that can benefit from these methodological improvements in handling partial annotations.
