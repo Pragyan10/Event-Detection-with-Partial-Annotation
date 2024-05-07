@@ -55,9 +55,19 @@ Analysis: Our model successfully identifies the "Attack" event, despite its abse
 
 **Example 2:**
 Text: "The company announced a new investment in the technology sector." <br />
-Gold Label: [O O O O New Investment O O O] <br />
-Partial Annotation: [O O O O O Investment O O O] <br />
-Model Output: [O O O O New Investment O O O] <br />
+| Token       | Gold Label     | Partial Annotation | Model Output     |
+|-------------|----------------|--------------------|------------------|
+| The         | O              | O                  | O                |
+| company     | O              | O                  | O                |
+| announced   | O              | O                  | O                |
+| a           | O              | O                  | O                |
+| new         | New            | O                  | New              |
+| investment  | Investment     | Investment         | Investment       |
+| in          | O              | O                  | O                |
+| the         | O              | O                  | O                |
+| technology  | O              | O                  | O                |
+| sector      | O              | O                  | O                |
+
 Analysis: The model correctly fills in the missing "New" label, showing its capability to infer and complete partially labeled data accurately. <br />
 These examples illustrate the model's practical ability to correct and complete partial annotations, enhancing the reliability and accuracy of event detection in various texts.
 
