@@ -38,9 +38,19 @@ The utility of our approach extends beyond theoretical improvements, demonstrati
 
 **Example 1:**
 Text: "A man died when a heavy tank devastated the hotel." <br />
-Gold Label: [O O Die O O O O Attack O O] <br />
-Partial Annotation: [O O Die O O O O O O O] <br />
-Model Output: [O O Die O O O O Attack O O] <br />
+| Token       | Gold Label | Partial Annotation | Model Output |
+|-------------|------------|--------------------|--------------|
+| A           | O          | O                  | O            |
+| man         | O          | O                  | O            |
+| died        | Die        | Die                | Die          |
+| when        | O          | O                  | O            |
+| a           | O          | O                  | O            |
+| heavy       | O          | O                  | O            |
+| tank        | O          | O                  | O            |
+| devastated  | Attack     | O                  | Attack       |
+| the         | O          | O                  | O            |
+| hotel       | O          | O                  | O            |
+
 Analysis: Our model successfully identifies the "Attack" event, despite its absence in the partial annotations. <br />
 
 **Example 2:**
