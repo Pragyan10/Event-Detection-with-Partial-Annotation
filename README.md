@@ -122,3 +122,11 @@ These examples illustrate the model's practical ability to correct and complete 
 
 ## Conclusion
 This innovative approach to event detection using partial annotations marks a significant advancement for not just event detection but also task including event argument detection and entity relation extraction. By effectively addressing the challenges associated with incomplete data, this method not only improves the accuracy and robustness of event detection models but also paves the way for future research and applications that can benefit from these methodological improvements in handling partial annotations.
+
+## Reference 
+[1]. Liu, Jian, et al. "Learning with Partial Annotations for Event Detection." Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). 2023.
+https://aclanthology.org/2023.acl-long.30/
+
+## Notes:
+This blog is made with the understanding of the paper and also based on the github link presented in the paper. It is recommended the reader view and paper and draw more insight on this idea. Link to the paper in Reference [1]. 
+
