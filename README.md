@@ -1,6 +1,5 @@
 # Advancing Event Detection with Partial Annotations: Breakthroughs and Methodologies
 
-## [1] Introduction
 Event Detection (ED) is a critical task within the broader field of natural language processing, aimed at identifying and categorizing occurrences of specific events in textual data. Traditionally, ED relies heavily on fully labeled datasets for model training. However, these ideal conditions are rarely met in practical scenarios, leading to datasets with partial or incomplete annotations. This issue significantly hampers the training of effective models using standard supervised learning techniques, as they struggle to cope with the incomplete data, leading to poor generalization on real-world data.
 
 For example in the figure below we see that <u> **"devastated"** </u> is considered as a False Negative since it is not annotated in the dataset and falls under <u> **Partial Annotation** </u>. This is just an instance and there are many dataset that we use which are only partially annotated. This becomes a big issue since Event Detection requires a fully annotated dataset to perform better.
