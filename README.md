@@ -26,9 +26,9 @@ This visualization demonstrates how our model processes text to isolate and iden
 **Adaptive Training Through Confidence Assessment** <br />
 Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the model's predictive uncertainty. By reinforcing high-confidence predictions and cautiously adjusting parameters for low-confidence ones, the model learns from its most reliable outputs and remains adaptable. This approach not only helps mitigate the impact of noisy or incomplete data but also enhances the model's generalization capabilities across diverse datasets.
 
-## [2] Key Code Snippets
+## [2] Important Key Code Snippets
 
-[Need to fill this part] 
+** To do ** [Need to fill this part] 
 
 
 ## [3] Key Results and Performance
@@ -78,7 +78,7 @@ Some key points and results:
 
 ## [4] Practical Examples and Real-World Applications
 
-The utility of our approach extends beyond theoretical improvements, demonstrating significant practical benefits in real-world applications:
+The utility of the approach on some test cases, demonstrating significant practical benefits in real-world applications. Here example sentences are used and are used for event prediction for a given event type. The input for the model is always an event type and a sentence where the events are to be predicted. The output is a label list of the event predicted. 
 
 **Example 1:**
 Text: "A man died when a heavy tank devastated the hotel." <br />
@@ -89,7 +89,7 @@ Text: "A man died when a heavy tank devastated the hotel." <br />
 | Model Output      | O | O   | Die  | O    | O | O     | O    | Attack     | O   | O     |
 
 
-Analysis: Our model successfully identifies the "Attack" event, despite its absence in the partial annotations. <br />
+Analysis: The model successfully identifies the "Attack" event, despite its absence in the partial annotations. <br />
 
 **Example 2:**
 Text: "The company announced a new investment in the technology sector." <br />
