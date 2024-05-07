@@ -33,7 +33,46 @@ Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the
 
 ## [3] Key Results and Performance
 
-[Need to fill this part] 
+The approach does very well compared to existing baselines in the event detection task. 
+Some key points and results:
+
+
+
+<h3>Comparison of F1 Scores on ACE 2005 and MAVEN</h3>
+<table>
+<tr>
+  <td>
+
+  **ACE 2005 Results**
+  | Model            | F1 on Original Set | F1 on Revised Set |
+  |------------------|--------------------|-------------------|
+  | **Hybrid (2016)** | 71.4               | 73.3              |
+  | **SeqBERT (2019)** | 72.3               | 73.8              |
+  | **BERTQA (2020)** | 72.4               | 74.5              |
+  | **OneIE (2020)** | 74.7               | 75.3              |
+  | **FourIE (2021)** | 74.9               | 75.3              |
+  | **PromptLoc (Proposed)** | 73.9       | 76.6              |
+
+  </td>
+  <td>
+
+  **MAVEN Results**
+  | Model                    | F1 Score |
+  |--------------------------|----------|
+  | **Hybrid (2016)**        | 65.0     |
+  | **OneIE (2021)**         | 66.4     |
+  | **BERTQA (2020)**        | 66.3     |
+  | **DMBERT (2019)**        | 67.2     |
+  | **BERT-CRF (2020)**      | 67.8     |
+  | **PromptLoc (Proposed)** | 68.9     |
+
+  </td>
+</tr>
+</table>
+
+
+
+
 
 
 ## [4] Practical Examples and Real-World Applications
