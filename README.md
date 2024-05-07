@@ -6,7 +6,7 @@ For example in the figure below we see that <u> **"devastated"** </u> is conside
 
 ![ImageForPartialAnnotation](/Images/PartialAnnotation.png)
 
-## [2] Proposed Approach
+## [1] Proposed Approach
 To effectively handle the inherent challenges of partial annotations within event detection datasets, this work introduces an advanced method that incorporates contrastive learning techniques combined with an uncertainty-guided training mechanism. This dual approach aims to robustly distinguish between genuine event triggers and the surrounding contextual words, thus enhancing the model's accuracy and reliability in event categorization, even when faced with datasets that are only partially annotated or contain noisy labels.
 
 ![ImageForApproachOverview](/Images/ApproachOverview.png)
@@ -26,17 +26,17 @@ This visualization demonstrates how our model processes text to isolate and iden
 **Adaptive Training Through Confidence Assessment** <br />
 Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the model's predictive uncertainty. By reinforcing high-confidence predictions and cautiously adjusting parameters for low-confidence ones, the model learns from its most reliable outputs and remains adaptable. This approach not only helps mitigate the impact of noisy or incomplete data but also enhances the model's generalization capabilities across diverse datasets.
 
-## Key Code Snippets
+## [2] Key Code Snippets
 
 [Need to fill this part] 
 
 
-## Key Results and Performance
+## [3] Key Results and Performance
 
 [Need to fill this part] 
 
 
-## Practical Examples and Real-World Applications
+## [4] Practical Examples and Real-World Applications
 
 The utility of our approach extends beyond theoretical improvements, demonstrating significant practical benefits in real-world applications:
 
