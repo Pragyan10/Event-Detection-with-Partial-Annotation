@@ -58,7 +58,24 @@ Text: "The company announced a new investment in the technology sector." <br />
 
 
 Analysis: The model correctly fills in the missing "New" label, showing its capability to infer and complete partially labeled data accurately. <br />
-These examples illustrate the model's practical ability to correct and complete partial annotations, enhancing the reliability and accuracy of event detection in various texts.
+
+**Some more examples: **
+
+| Description       | She  | has  | been | offered  | a   | significant | role  | in  | the | upcoming | movie  |
+|-------------------|------|------|------|----------|-----|-------------|-------|-----|-----|----------|--------|
+| Gold Label        | O    | O    | O    | Offered  | O   | O           | O     | O   | O   | O        | O      |
+| Partial Annotation| O    | O    | O    | O        | O   | O           | O     | O   | O   | O        | O      |
+| Model Output      | O    | O    | O    | Offered  | O   | O           | O     | O   | O   | O        | O      |
+
+
+| Description       | The  | wind | turbine | generates | more | energy | when | it's  | windy  |
+|-------------------|------|------|---------|-----------|------|--------|------|-------|--------|
+| Gold Label        | O    | O    | O       | Generates | O    | O      | O    | O     | O      |
+| Partial Annotation| O    | O    | O       | O         | O    | O      | O    | O     | O      |
+| Model Output      | O    | O    | O       | Generates | O    | O      | O    | O     | O      |
+
+
+These examples illustrate the model's practical ability to correct and complete partial annotations, enhancing the reliability and accuracy of event detection in various texts compared to the existing hard classification.
 
 ## Conclusion
 Our innovative approach to event detection using partial annotations marks a significant advancement in the field of natural language processing. By effectively addressing the challenges associated with incomplete data, our method not only improves the accuracy and robustness of event detection models but also paves the way for future research and applications that can benefit from these methodological improvements in handling partial annotations.
