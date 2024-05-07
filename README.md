@@ -39,10 +39,7 @@ Some key points and results:
   - Full Training Setting: Evaluates the model using the original training set. The proposed method achieves the best F1 scores, demonstrating its effectiveness.
   - Data Removal Setting: Studies the impact of reducing the number of positive examples. Results show the model consistently outperforms others, confirming that the lack of positive instances isn’t a major factor hindering learning when using pre-trained language models.
   - Data Masking Setting: Simulates a more severe partial annotation scenario by removing the labeling information of some events. The proposed method outperforms previous methods by significant margins, showcasing its ability to learn effectively from unlabeled data.
-
-
-
-<h3>Comparison of F1 Scores on ACE 2005 and MAVEN</h3>
+- On Baselines
 <table>
 <tr>
   <td>
