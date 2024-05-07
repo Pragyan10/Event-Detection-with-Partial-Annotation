@@ -35,10 +35,10 @@ Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the
 
 The approach does very well compared to existing baselines in the event detection task. 
 Some key points and results:
-- On Evaluation Settings
-  - Full Training Setting: Evaluates the model using the original training set. The proposed method achieves the best F1 scores, demonstrating its effectiveness.
-  - Data Removal Setting: Studies the impact of reducing the number of positive examples. Results show the model consistently outperforms others, confirming that the lack of positive instances isn’t a major factor hindering learning when using pre-trained language models.
-  - Data Masking Setting: Simulates a more severe partial annotation scenario by removing the labeling information of some events. The proposed method outperforms previous methods by significant margins, showcasing its ability to learn effectively from unlabeled data.
+- **On Evaluation Settings**
+  - **Full Training Setting:** Evaluates the model using the original training set. The proposed method achieves the best F1 scores, demonstrating its effectiveness.
+  - **Data Removal Setting:** Studies the impact of reducing the number of positive examples. Results show the model consistently outperforms others, confirming that the lack of positive instances isn’t a major factor hindering learning when using pre-trained language models.
+  - **Data Masking Setting:** Simulates a more severe partial annotation scenario by removing the labeling information of some events. The proposed method outperforms previous methods by significant margins, showcasing its ability to learn effectively from unlabeled data.
 - On Baselines
 <table>
 <tr>
