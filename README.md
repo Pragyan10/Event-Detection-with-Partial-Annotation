@@ -127,6 +127,6 @@ This innovative approach to event detection using partial annotations marks a si
 [1]. Liu, Jian, et al. "Learning with Partial Annotations for Event Detection." Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). 2023.
 https://aclanthology.org/2023.acl-long.30/
 
-## Notes:
+## **Notes**
 This blog is made with the understanding of the paper and also based on the github link presented in the paper. It is recommended the reader view and paper and draw more insight on this idea. Link to the paper in Reference [1]. 
 
