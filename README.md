@@ -7,21 +7,24 @@ For example in the figure below we see that <u> **"devastated"** </u> is conside
 ![ImageForPartialAnnotation](/Images/PartialAnnotation.png)
 
 ## [2] Proposed Approach
-To tackle the challenges posed by partial annotations, this work introduces a cutting-edge method that leverages **contrastive learning techniques**. This approach is specifically designed to differentiate between actual event triggers and the contextual words surrounding them, thus enhancing the model's ability to recognize and categorize events accurately, even with incomplete data.
+To effectively handle the inherent challenges of partial annotations within event detection datasets, this work introduces an advanced method that incorporates contrastive learning techniques combined with an uncertainty-guided training mechanism. This dual approach aims to robustly distinguish between genuine event triggers and the surrounding contextual words, thus enhancing the model's accuracy and reliability in event categorization, even when faced with datasets that are only partially annotated or contain noisy labels.
 
 ![ImageForApproachOverview](/Images/ApproachOverview.png)
 
-### [2.1] Architecture and Key Components
+### Visual Explanation of the Trigger Localization
 
-**Visual Explanation of the Trigger Localization** <br />
-
-Our model's architecture is centered around a novel trigger localization formulation that utilizes contrastive learning. This setup enhances the model’s ability to focus on relevant event triggers without being misled by noise from partial annotations. By emphasizing the relative differences between potential triggers and non-triggers, our approach significantly improves the clarity and accuracy of event detection.
+**Comparative Overview** <br />
+This section contrasts traditional hard classification methods with our advanced trigger localization strategy. Unlike traditional methods that often misclassify due to unclear training data distinctions, our approach uses a contrastive learning framework that dynamically enhances the separation between true event triggers and non-trigger words. This method focuses on boosting scores for potential triggers while suppressing those for irrelevant contexts, thus improving the model’s focus and reducing the influence of noisy data.
 
 ![ImageForApproachOverview](/Images/TriggerLocalization.png)
 
-Detailed comparison between traditional hard classification and our advanced trigger localization methodology.
+This visualization demonstrates how our model processes text to isolate and identify event triggers more effectively than traditional methods, providing a clear, operational insight into the advantages of contrastive learning in handling partial annotations.
 
-This visualization offers an in-depth look at how our model processes text to isolate and identify event triggers more effectively than traditional methods.
+
+### Uncertaininty-guided training mechanism
+
+**Adaptive Training Through Confidence Assessment** <br />
+Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the model's predictive uncertainty. By reinforcing high-confidence predictions and cautiously adjusting parameters for low-confidence ones, the model learns from its most reliable outputs and remains adaptable. This approach not only helps mitigate the impact of noisy or incomplete data but also enhances the model's generalization capabilities across diverse datasets.
 
 ## Key Results and Performance
 Our new method stands out for its robust performance, particularly in scenarios where a large portion of the dataset suffers from incomplete annotations:
