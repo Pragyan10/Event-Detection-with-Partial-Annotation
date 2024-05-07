@@ -16,26 +16,9 @@ To effectively handle the inherent challenges of partial annotations within even
 **Comparative Overview** <br />
 This section contrasts traditional hard classification methods with our advanced trigger localization strategy. Unlike traditional methods that often misclassify due to unclear training data distinctions, our approach uses a contrastive learning framework that dynamically enhances the separation between true event triggers and non-trigger words. This method focuses on boosting scores for potential triggers while suppressing those for irrelevant contexts, thus improving the model’s focus and reducing the influence of noisy data.
 
-<img src="/Images/TriggerLocalization.png" width="200" height="100" alt="TriggerLocalization" />
+<img src="/Images/TriggerLocalization.png" width="1000" height="400" alt="TriggerLocalization" />
 
 This visualization demonstrates how our model processes text to isolate and identify event triggers more effectively than traditional methods, providing a clear, operational insight into the advantages of contrastive learning in handling partial annotations.
-
-
-<div style="display: flex; align-items: center;">
-  <div>
-    **Comparative Overview** <br />
-    This section contrasts traditional hard classification methods with our advanced trigger localization strategy. Unlike traditional methods that often misclassify due to unclear training data distinctions, our approach uses a contrastive learning framework that dynamically enhances the separation between true event triggers and non-trigger words. This method focuses on boosting scores for potential triggers while suppressing those for irrelevant contexts, thus improving the model’s focus and reducing the influence of noisy data.
-  </div>
-  <div>
-    <img src="url_to_image.jpg" width="200">
-  </div>
-  
-</div>
-
-
-
-
-
 
 
 ### Uncertaininty-guided training mechanism
