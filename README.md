@@ -26,6 +26,11 @@ This visualization demonstrates how our model processes text to isolate and iden
 **Adaptive Training Through Confidence Assessment** <br />
 Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the model's predictive uncertainty. By reinforcing high-confidence predictions and cautiously adjusting parameters for low-confidence ones, the model learns from its most reliable outputs and remains adaptable. This approach not only helps mitigate the impact of noisy or incomplete data but also enhances the model's generalization capabilities across diverse datasets.
 
+## Key Code Snippets
+
+[Need to fill this part] 
+
+
 ## Key Results and Performance
 
 [Need to fill this part] 
