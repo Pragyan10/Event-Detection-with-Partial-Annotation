@@ -39,35 +39,23 @@ The utility of our approach extends beyond theoretical improvements, demonstrati
 
 **Example 1:**
 Text: "A man died when a heavy tank devastated the hotel." <br />
-| Token       | Gold Label | Partial Annotation | Model Output |
-|-------------|------------|--------------------|--------------|
-| A           | O          | O                  | O            |
-| man         | O          | O                  | O            |
-| died        | Die        | Die                | Die          |
-| when        | O          | O                  | O            |
-| a           | O          | O                  | O            |
-| heavy       | O          | O                  | O            |
-| tank        | O          | O                  | O            |
-| devastated  | Attack     | O                  | Attack       |
-| the         | O          | O                  | O            |
-| hotel       | O          | O                  | O            |
+| Description       | A | man | died | when | a | heavy | tank | devastated | the | hotel |
+|-------------------|---|-----|------|------|---|-------|------|------------|-----|-------|
+| Gold Label        | O | O   | Die  | O    | O | O     | O    | Attack     | O   | O     |
+| Partial Annotation| O | O   | Die  | O    | O | O     | O    | O          | O   | O     |
+| Model Output      | O | O   | Die  | O    | O | O     | O    | Attack     | O   | O     |
+
 
 Analysis: Our model successfully identifies the "Attack" event, despite its absence in the partial annotations. <br />
 
 **Example 2:**
 Text: "The company announced a new investment in the technology sector." <br />
-| Token       | Gold Label     | Partial Annotation | Model Output     |
-|-------------|----------------|--------------------|------------------|
-| The         | O              | O                  | O                |
-| company     | O              | O                  | O                |
-| announced   | O              | O                  | O                |
-| a           | O              | O                  | O                |
-| new         | New            | O                  | New              |
-| investment  | Investment     | Investment         | Investment       |
-| in          | O              | O                  | O                |
-| the         | O              | O                  | O                |
-| technology  | O              | O                  | O                |
-| sector      | O              | O                  | O                |
+| Description       | The | company | announced | a  | new | investment | in | the | technology | sector |
+|-------------------|-----|---------|-----------|----|-----|------------|----|-----|------------|--------|
+| Gold Label        | O   | O       | O         | O  | New | Investment | O  | O   | O          | O      |
+| Partial Annotation| O   | O       | O         | O  | O   | Investment | O  | O   | O          | O      |
+| Model Output      | O   | O       | O         | O  | New | Investment | O  | O   | O          | O      |
+
 
 Analysis: The model correctly fills in the missing "New" label, showing its capability to infer and complete partially labeled data accurately. <br />
 These examples illustrate the model's practical ability to correct and complete partial annotations, enhancing the reliability and accuracy of event detection in various texts.
