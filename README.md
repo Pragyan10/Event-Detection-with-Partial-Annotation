@@ -120,7 +120,7 @@ Analysis: The model correctly fills in the missing "New" label, showing its capa
 
 These examples illustrate the model's practical ability to correct and complete partial annotations, enhancing the reliability and accuracy of event detection in various texts compared to the existing hard classification.
 
-## Conclusion
+
 This innovative approach to event detection using partial annotations marks a significant advancement for not just event detection but also task including event argument detection and entity relation extraction. By effectively addressing the challenges associated with incomplete data, this method not only improves the accuracy and robustness of event detection models but also paves the way for future research and applications that can benefit from these methodological improvements in handling partial annotations.
 
 ## Reference 
