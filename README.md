@@ -30,6 +30,69 @@ Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the
 
 ** To do ** [Need to fill this part] 
 
+Pre Processing and getting the inputs ready for BERT 
+
+def build_bert_example(query, context, start_pos, end_pos, max_seq_length,
+                       cls_token='[CLS]', sep_token='[SEP]', pad_token=0, 
+                       sequence_a_segment_id=0, sequence_b_segment_id=1,
+                       cls_token_segment_id=0, pad_token_segment_id=1):
+
+    is_impossible = (start_pos == -1)
+    query_tokens = tokenizer.tokenize(query)
+
+    # Calculate the number of tokens allowed for the context
+    max_tokens_for_doc = max_seq_length - len(query_tokens) - 3
+
+    tok_to_orig_index = []
+    orig_to_tok_index = []
+    all_doc_tokens = []
+
+    # Tokenize the context into sub-tokens
+    for (i, token) in enumerate(context):
+        orig_to_tok_index.append(len(all_doc_tokens))
+        sub_tokens = tokenizer.tokenize(token)
+        if len(all_doc_tokens) + len(sub_tokens) > max_tokens_for_doc:
+            break
+
+        for sub_token in sub_tokens:
+            tok_to_orig_index.append(i)
+            all_doc_tokens.append(sub_token)
+
+    # Convert start and end positions within the context to token indices
+    tok_start_position = orig_to_tok_index[start_pos] if start_pos != -1 else -1
+    tok_end_position = orig_to_tok_index[end_pos] if end_pos != -1 else -1
+
+    tokens = [cls_token] + query_tokens + [sep_token]
+    segment_ids = [cls_token_segment_id] * (len(query_tokens) + 2)
+
+    # Append tokens from the document
+    for i in range(len(all_doc_tokens)):
+        tokens.append(all_doc_tokens[i])
+        segment_ids.append(sequence_b_segment_id)
+
+    tokens.append(sep_token)
+    segment_ids.append(sequence_b_segment_id)
+
+    # Convert tokens to IDs, prepare mask, and pad sequences
+    input_ids = tokenizer.convert_tokens_to_ids(tokens)
+    input_mask = [1] * len(input_ids)
+    while len(input_ids) < max_seq_length:
+        input_ids.append(pad_token)
+        input_mask.append(0)
+        segment_ids.append(pad_token_segment_id)
+
+    assert len(input_ids) == max_seq_length
+    assert len(input_mask) == max_seq_length
+    assert len(segment_ids) == max_seq_length
+    
+    # Compute offsets and positions
+    doc_offset = len(query_tokens) + 2
+    start_position = tok_start_position + doc_offset if start_pos != -1 else cls_index
+    end_position = tok_end_position + doc_offset if end_pos != -1 else cls_index
+
+    return input_ids, input_mask, segment_ids, doc_offset, token_to_orig_map, start_position, end_position
+
+
 
 ## [3] Key Results and Performance
 
