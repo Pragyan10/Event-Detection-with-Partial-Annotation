@@ -28,7 +28,7 @@ Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the
 
 ## [2] Important Key Code Snippets
 
-###Pre Processing and getting the inputs ready for BERT
+### Pre Processing and getting the inputs ready for BERT
 - This function constructs the necessary components for a BERT input example
 
         def build_bert_example():
