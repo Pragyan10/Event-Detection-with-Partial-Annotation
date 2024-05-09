@@ -28,9 +28,7 @@ Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the
 
 ## [2] Important Key Code Snippets
 
-** To do ** [Need to fill this part] 
-
-Pre Processing and getting the inputs ready for BERT 
+###**Pre Processing and getting the inputs ready for BERT **
 
 def build_bert_example(query, context, start_pos, end_pos, max_seq_length,
                        cls_token='[CLS]', sep_token='[SEP]', pad_token=0, 
