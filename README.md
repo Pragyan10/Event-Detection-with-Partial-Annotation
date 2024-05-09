@@ -31,109 +31,109 @@ Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the
 ###Pre Processing and getting the inputs ready for BERT
 - This function constructs the necessary components for a BERT input example
 
-def build_bert_example():
-
-    is_impossible = (start_pos == -1)
-    query_tokens = tokenizer.tokenize(query)
-
-    # Calculate the number of tokens allowed for the context
-    max_tokens_for_doc = max_seq_length - len(query_tokens) - 3
-
-    tok_to_orig_index = []
-    orig_to_tok_index = []
-    all_doc_tokens = []
-
-    # Tokenize the context into sub-tokens
-    for (i, token) in enumerate(context):
-        orig_to_tok_index.append(len(all_doc_tokens))
-        sub_tokens = tokenizer.tokenize(token)
-        if len(all_doc_tokens) + len(sub_tokens) > max_tokens_for_doc:
-            break
-
-        for sub_token in sub_tokens:
-            tok_to_orig_index.append(i)
-            all_doc_tokens.append(sub_token)
-
-    # Convert start and end positions within the context to token indices
-    tok_start_position = orig_to_tok_index[start_pos] if start_pos != -1 else -1
-    tok_end_position = orig_to_tok_index[end_pos] if end_pos != -1 else -1
-
-    tokens = [cls_token] + query_tokens + [sep_token]
-    segment_ids = [cls_token_segment_id] * (len(query_tokens) + 2)
-
-    # Append tokens from the document
-    for i in range(len(all_doc_tokens)):
-        tokens.append(all_doc_tokens[i])
+        def build_bert_example():
+        
+        is_impossible = (start_pos == -1)
+        query_tokens = tokenizer.tokenize(query)
+        
+        # Calculate the number of tokens allowed for the context
+        max_tokens_for_doc = max_seq_length - len(query_tokens) - 3
+        
+        tok_to_orig_index = []
+        orig_to_tok_index = []
+        all_doc_tokens = []
+        
+        # Tokenize the context into sub-tokens
+        for (i, token) in enumerate(context):
+            orig_to_tok_index.append(len(all_doc_tokens))
+            sub_tokens = tokenizer.tokenize(token)
+            if len(all_doc_tokens) + len(sub_tokens) > max_tokens_for_doc:
+                break
+        
+            for sub_token in sub_tokens:
+                tok_to_orig_index.append(i)
+                all_doc_tokens.append(sub_token)
+        
+        # Convert start and end positions within the context to token indices
+        tok_start_position = orig_to_tok_index[start_pos] if start_pos != -1 else -1
+        tok_end_position = orig_to_tok_index[end_pos] if end_pos != -1 else -1
+        
+        tokens = [cls_token] + query_tokens + [sep_token]
+        segment_ids = [cls_token_segment_id] * (len(query_tokens) + 2)
+        
+        # Append tokens from the document
+        for i in range(len(all_doc_tokens)):
+            tokens.append(all_doc_tokens[i])
+            segment_ids.append(sequence_b_segment_id)
+        
+        tokens.append(sep_token)
         segment_ids.append(sequence_b_segment_id)
-
-    tokens.append(sep_token)
-    segment_ids.append(sequence_b_segment_id)
-
-    # Convert tokens to IDs, prepare mask, and pad sequences
-    input_ids = tokenizer.convert_tokens_to_ids(tokens)
-    input_mask = [1] * len(input_ids)
-    while len(input_ids) < max_seq_length:
-        input_ids.append(pad_token)
-        input_mask.append(0)
-        segment_ids.append(pad_token_segment_id)
-
-    assert len(input_ids) == max_seq_length
-    assert len(input_mask) == max_seq_length
-    assert len(segment_ids) == max_seq_length
-    
-    # Compute offsets and positions
-    doc_offset = len(query_tokens) + 2
-    start_position = tok_start_position + doc_offset if start_pos != -1 else cls_index
-    end_position = tok_end_position + doc_offset if end_pos != -1 else cls_index
-
-    return input_ids, input_mask, segment_ids, doc_offset, token_to_orig_map, start_position, end_position
+        
+        # Convert tokens to IDs, prepare mask, and pad sequences
+        input_ids = tokenizer.convert_tokens_to_ids(tokens)
+        input_mask = [1] * len(input_ids)
+        while len(input_ids) < max_seq_length:
+            input_ids.append(pad_token)
+            input_mask.append(0)
+            segment_ids.append(pad_token_segment_id)
+        
+        assert len(input_ids) == max_seq_length
+        assert len(input_mask) == max_seq_length
+        assert len(segment_ids) == max_seq_length
+        
+        # Compute offsets and positions
+        doc_offset = len(query_tokens) + 2
+        start_position = tok_start_position + doc_offset if start_pos != -1 else cls_index
+        end_position = tok_end_position + doc_offset if end_pos != -1 else cls_index
+        
+        return input_ids, input_mask, segment_ids, doc_offset, token_to_orig_map, start_position, end_position
 
 
 ### The magical Uncertainity Interval
 - This function leverages the BertForQuestionAnswering model for a novel application of uncertainty estimation. This enhances the scores for gold labels and also makes the score for other unlabelled tokens as maybe for futher learning iteration.
 
-  def uncertainty_interval():
-    model.train()
-    result = []
-    with torch.no_grad():
-        data_x, data_x_mask, data_segment_id, data_start, data_end, appendix = batch
+      def uncertainty_interval():
+        model.train()
+        result = []
+        with torch.no_grad():
+            data_x, data_x_mask, data_segment_id, data_start, data_end, appendix = batch
+            inputs = {
+                'input_ids': data_x,
+                'attention_mask':  data_x_mask,
+                'token_type_ids':  data_segment_id,
+                'start_positions': data_start,
+                'end_positions':   data_end
+            }
+            for i in range(N):
+                loss, start, end = model(**inputs)
+                result.append([start, end])
+    
+        for elem in result:
+            elem[0] = torch.argmax(elem[0], 1).detach().cpu().numpy()
+            elem[1] = torch.argmax(elem[1], 1).detach().cpu().numpy()
+    
+        result = np.asarray(result)
+        result = np.transpose(result, (2, 1, 0))
+    
+        start = result[:,0,:]
+        end = result[:,1,:]
+    
+        start = [uncertainty_select(x) for x in start]
+        end = [uncertainty_select(x) for x in end]
+    
+        start = torch.LongTensor(start).to(data_x.device)
+        end = torch.LongTensor(end).to(data_x.device)
+    
         inputs = {
             'input_ids': data_x,
             'attention_mask':  data_x_mask,
             'token_type_ids':  data_segment_id,
-            'start_positions': data_start,
-            'end_positions':   data_end
+            'start_positions': start,
+            'end_positions':   end
         }
-        for i in range(N):
-            loss, start, end = model(**inputs)
-            result.append([start, end])
-
-    for elem in result:
-        elem[0] = torch.argmax(elem[0], 1).detach().cpu().numpy()
-        elem[1] = torch.argmax(elem[1], 1).detach().cpu().numpy()
-
-    result = np.asarray(result)
-    result = np.transpose(result, (2, 1, 0))
-
-    start = result[:,0,:]
-    end = result[:,1,:]
-
-    start = [uncertainty_select(x) for x in start]
-    end = [uncertainty_select(x) for x in end]
-
-    start = torch.LongTensor(start).to(data_x.device)
-    end = torch.LongTensor(end).to(data_x.device)
-
-    inputs = {
-        'input_ids': data_x,
-        'attention_mask':  data_x_mask,
-        'token_type_ids':  data_segment_id,
-        'start_positions': start,
-        'end_positions':   end
-    }
-
-    outputs = model(**inputs)
-    return outputs
+    
+        outputs = model(**inputs)
+        return outputs
 
 
 
