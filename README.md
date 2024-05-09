@@ -135,6 +135,27 @@ Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the
         outputs = model(**inputs)
         return outputs
 
+### Loading and testing the trained model 
+- Here you set the model_path and use it on the testing set 
+
+        def build_model(model_path):
+            model = BertForQuestionAnswering.from_pretrained(model_path)
+            return model
+        
+        def predict(model, device, data_set):
+            model.eval()
+            with torch.no_grad():
+                for batch in data_set.get_tqdm(device, False):
+                    inputs = {'input_ids': batch[0], 'attention_mask': batch[1], 'token_type_ids': batch[2]}
+                    outputs = model(**inputs)
+                # Additional logic for calculating metrics and handling predictions
+        
+        if __name__ == '__main__':
+            device = 'cuda:0'
+            model = build_model(config.bert_dir)
+            model.to(device)
+            # Load data and prepare data sets
+            predict(model, device, test_set)
 
 
 ## [3] Key Results and Performance
