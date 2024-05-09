@@ -207,7 +207,7 @@ Some key points and results:
 
 Figure to visualize how the prediction is made using the trained model. Below tables give sample examples. 
 
-![ImageForTesingTheModel](/Images/TestingModel.png)
+![ImageForTesingTheModel](/Images/TestingModel1.png)
 
 The utility of the approach on some test cases, demonstrating significant practical benefits in real-world applications. Here example sentences are used and are used for event prediction for a given event type. The input for the model is always an event type and a sentence where the events are to be predicted. The output is a label list of the event predicted. 
 
