@@ -226,9 +226,9 @@ Analysis: The model successfully identifies the "Attack" event, despite its abse
 Text: "The company announced a new investment in the technology sector." <br />
 | Description       | The | company | announced | a  | new | investment | in | the | technology | sector |
 |-------------------|-----|---------|-----------|----|-----|------------|----|-----|------------|--------|
-| Gold Label        | O   | O       | O         | O  | New | Investment | O  | O   | O          | O      |
-| Partial Annotation| O   | O       | O         | O  | O   | Investment | O  | O   | O          | O      |
-| Model Output      | O   | O       | O         | O  | New | Investment | O  | O   | O          | O      |
+| Gold Label        | O   | O       | O         | O  | Invest | Invest | O  | O   | O          | O      |
+| Partial Annotation| O   | O       | O         | O  | O   | Invest | O  | O   | O          | O      |
+| Model Output      | O   | O       | O         | O  | Invest | Invest | O  | O   | O          | O      |
 
 
 Analysis: The model correctly fills in the missing "New" label, showing its capability to infer and complete partially labeled data accurately. <br />
@@ -237,16 +237,16 @@ Analysis: The model correctly fills in the missing "New" label, showing its capa
 
 | Description       | She  | has  | been | offered  | a   | significant | role  | in  | the | upcoming | movie  |
 |-------------------|------|------|------|----------|-----|-------------|-------|-----|-----|----------|--------|
-| Gold Label        | O    | O    | O    | Offered  | O   | O           | O     | O   | O   | O        | O      |
+| Gold Label        | O    | O    | O    | Offer  | O   | O           | O     | O   | O   | O        | O      |
 | Partial Annotation| O    | O    | O    | O        | O   | O           | O     | O   | O   | O        | O      |
-| Model Output      | O    | O    | O    | Offered  | O   | O           | O     | O   | O   | O        | O      |
+| Model Output      | O    | O    | O    | Offer  | O   | O           | O     | O   | O   | O        | O      |
 
 
 | Description       | The  | wind | turbine | generates | more | energy | when | it's  | windy  |
 |-------------------|------|------|---------|-----------|------|--------|------|-------|--------|
-| Gold Label        | O    | O    | O       | Generates | O    | O      | O    | O     | O      |
+| Gold Label        | O    | O    | O       | Generate | O    | O      | O    | O     | O      |
 | Partial Annotation| O    | O    | O       | O         | O    | O      | O    | O     | O      |
-| Model Output      | O    | O    | O       | Generates | O    | O      | O    | O     | O      |
+| Model Output      | O    | O    | O       | Generate | O    | O      | O    | O     | O      |
 
 
 These examples illustrate the model's practical ability to correct and complete partial annotations, enhancing the reliability and accuracy of event detection in various texts compared to the existing hard classification.
