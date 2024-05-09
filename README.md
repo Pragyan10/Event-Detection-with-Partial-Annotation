@@ -28,12 +28,10 @@ Our uncertainty-guided training incorporates Monte Carlo Dropout to estimate the
 
 ## [2] Important Key Code Snippets
 
-###**Pre Processing and getting the inputs ready for BERT **
+###Pre Processing and getting the inputs ready for BERT
+- This function constructs the necessary components for a BERT input example
 
-def build_bert_example(query, context, start_pos, end_pos, max_seq_length,
-                       cls_token='[CLS]', sep_token='[SEP]', pad_token=0, 
-                       sequence_a_segment_id=0, sequence_b_segment_id=1,
-                       cls_token_segment_id=0, pad_token_segment_id=1):
+def build_bert_example():
 
     is_impossible = (start_pos == -1)
     query_tokens = tokenizer.tokenize(query)
@@ -89,6 +87,53 @@ def build_bert_example(query, context, start_pos, end_pos, max_seq_length,
     end_position = tok_end_position + doc_offset if end_pos != -1 else cls_index
 
     return input_ids, input_mask, segment_ids, doc_offset, token_to_orig_map, start_position, end_position
+
+
+### The magical Uncertainity Interval
+- This function leverages the BertForQuestionAnswering model for a novel application of uncertainty estimation. This enhances the scores for gold labels and also makes the score for other unlabelled tokens as maybe for futher learning iteration.
+
+  def uncertainty_interval():
+    model.train()
+    result = []
+    with torch.no_grad():
+        data_x, data_x_mask, data_segment_id, data_start, data_end, appendix = batch
+        inputs = {
+            'input_ids': data_x,
+            'attention_mask':  data_x_mask,
+            'token_type_ids':  data_segment_id,
+            'start_positions': data_start,
+            'end_positions':   data_end
+        }
+        for i in range(N):
+            loss, start, end = model(**inputs)
+            result.append([start, end])
+
+    for elem in result:
+        elem[0] = torch.argmax(elem[0], 1).detach().cpu().numpy()
+        elem[1] = torch.argmax(elem[1], 1).detach().cpu().numpy()
+
+    result = np.asarray(result)
+    result = np.transpose(result, (2, 1, 0))
+
+    start = result[:,0,:]
+    end = result[:,1,:]
+
+    start = [uncertainty_select(x) for x in start]
+    end = [uncertainty_select(x) for x in end]
+
+    start = torch.LongTensor(start).to(data_x.device)
+    end = torch.LongTensor(end).to(data_x.device)
+
+    inputs = {
+        'input_ids': data_x,
+        'attention_mask':  data_x_mask,
+        'token_type_ids':  data_segment_id,
+        'start_positions': start,
+        'end_positions':   end
+    }
+
+    outputs = model(**inputs)
+    return outputs
 
 
 
